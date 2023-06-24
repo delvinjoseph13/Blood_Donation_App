@@ -1,5 +1,6 @@
 import 'package:blood_donation_app/project%203/add.dart';
 import 'package:blood_donation_app/project%203/home.dart';
+import 'package:blood_donation_app/project%203/update.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       routes: {
         '/': (context) => HomeScreen(),
-        '/add': (context) => Addbutton()
+        '/add': (context) => Addbutton(),
+        '/update':(context) => updatebutton(),
       },
       initialRoute: '/',
     );

@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class Addbutton extends StatelessWidget {
-  const Addbutton({super.key});
+class updatebutton extends StatelessWidget {
+  const updatebutton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,18 +15,15 @@ class Addbutton extends StatelessWidget {
     TextEditingController donorphone = TextEditingController();
     TextEditingController donorName = TextEditingController();
 
-    void adddonor() {
-      final data = {
-        'name': donorName.text,
-        'phone': donorphone.text,
-        'group': selectedgroups
-      };
-      donor.add(data);
-    }
+    final argc = ModalRoute.of(context)!.settings.arguments as Map;
 
+    donorName.text = argc['name'];
+    donorphone.text = argc['phone'];
+    selectedgroups = argc['group'];
+    final docid = argc['id'];
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Add Donors'),
+          title: const Text('update Donors'),
           backgroundColor: Colors.red,
         ),
         body: Column(
@@ -71,12 +68,9 @@ class Addbutton extends StatelessWidget {
                       minimumSize:
                           MaterialStatePropertyAll(Size(double.infinity, 50)),
                       backgroundColor: MaterialStatePropertyAll(Colors.red)),
-                  onPressed: () {
-                    adddonor();
-                    Navigator.pop(context);
-                  },
+                  onPressed: () {},
                   child: const Text(
-                    'Submit',
+                    'update',
                     style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                   )),
             )
