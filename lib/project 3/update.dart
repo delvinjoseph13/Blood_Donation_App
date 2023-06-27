@@ -15,6 +15,15 @@ class updatebutton extends StatelessWidget {
     TextEditingController donorphone = TextEditingController();
     TextEditingController donorName = TextEditingController();
 
+    void updatedonor(docid) {
+      final data = {
+        'name': donorName.text,
+        'phone': donorphone.text.toString(),
+        'group': selectedgroups
+      };
+      donor.doc(docid).update(data);
+    }
+
     final argc = ModalRoute.of(context)!.settings.arguments as Map;
 
     donorName.text = argc['name'];
@@ -49,6 +58,7 @@ class updatebutton extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: DropdownButtonFormField(
+                  value: selectedgroups,
                   decoration:
                       InputDecoration(label: Text('select blood group')),
                   items: bloodgroup
@@ -68,7 +78,10 @@ class updatebutton extends StatelessWidget {
                       minimumSize:
                           MaterialStatePropertyAll(Size(double.infinity, 50)),
                       backgroundColor: MaterialStatePropertyAll(Colors.red)),
-                  onPressed: () {},
+                  onPressed: () {
+                    updatedonor(docid);
+                    Navigator.pop(context);
+                  },
                   child: const Text(
                     'update',
                     style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
